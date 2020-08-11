@@ -420,6 +420,29 @@ export namespace JWE {
 
   function decrypt(jwe: string | FlattenedJWE | GeneralJWE, key: ConsumeKeyInput, options?: DecryptOptions<false>): Buffer;
   function decrypt(jwe: string | FlattenedJWE | GeneralJWE, key: ConsumeKeyInput, options?: DecryptOptions<true>): completeDecrypt;
+
+  interface VerifyOptions<komplet> {
+    complete?: komplet;
+    ignoreExp?: boolean;
+    ignoreNbf?: boolean;
+    ignoreIat?: boolean;
+    maxTokenAge?: string;
+    subject?: string;
+    issuer?: string;
+    maxAuthAge?: string;
+    jti?: string;
+    clockTolerance?: string;
+    audience?: string | string[];
+    algorithms?: string[];
+    nonce?: string;
+    typ?: string;
+    now?: Date;
+    crit?: string[];
+    profile?: JWTProfiles;
+  }
+
+  function verify(jwe: string | FlattenedJWE | GeneralJWE, key: ConsumeKeyInput , options?: VerifyOptions<false>): object;
+  function verify(jwe: string | FlattenedJWE | GeneralJWE, key: ConsumeKeyInput , options?: VerifyOptions<true>): completeDecrypt;
 }
 
 export namespace JWT {
